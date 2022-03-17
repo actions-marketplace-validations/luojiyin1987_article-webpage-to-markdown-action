@@ -45,7 +45,7 @@ news-translate
 Add the following step your job.
 
 ```yml
-- uses: freeCodeCamp-China/article-webpage-to-markdown-action@v0.1.0
+- uses: luojiyin1987/article-webpage-to-markdown-action@v0.1.2
   with:
     newsLink: '${{ github.event.issue.Body }}'
 ```
