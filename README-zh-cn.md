@@ -42,7 +42,7 @@ news-translate
 在 job 中添加下面的 step.
 
 ```yml
-- uses: luojiyin1987/article-webpage-to-markdown-action@v0.1.0
+- uses: luojiyin1987/article-webpage-to-markdown-action@v0.1.2
   with:
     newsLink: '${{ github.event.issue.Body }}'
 ```
