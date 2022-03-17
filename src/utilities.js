@@ -85,7 +85,7 @@ exports.HTMLtoMarkdown = (html) =>
     // Original author's signature
     const authorName = authorCardName.text() || 'Anonymous';
     // Original author's personal page
-    const authorURL = hostURL_EN + authorCardName.attr('href');
+    const authorURL = hostURL_EN + (authorCardName.attr('href') || 'Anonymous');
 
     if (!articleTitle || !authorName || (authorURL === hostURL_EN))
       return reject(Err_DOMWrong);
