@@ -1,6 +1,9 @@
 name: "article-webpage-to-markdown-action"
 description: "Automatically generate Markdown files based on the webpages of articles. Currently supports freecodecamp's news site."
 author: "freeCodeCamp-China"
+branding:
+  icon: 'award'  
+  color: 'green'
 inputs:
   newsLink:
     description: "A string in a specific format that contains a link to a article."
