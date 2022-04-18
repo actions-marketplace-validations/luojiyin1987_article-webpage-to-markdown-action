@@ -43,6 +43,7 @@ let tryNum =0;
     );
   } catch (error) {
     console.log('ERR:', error);
+    console.log('tryNum:', tryNum, 'maxTry:', maxTry);
 	if(tryNum < maxTry) {
 		tryNum++;
 		toMarkdown()
