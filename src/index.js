@@ -15,6 +15,8 @@ const {
 
 // cd ./news-translation
 // You can run `node script\toMarkdown\index.js URL<String>`(URL is the URL of the article).
+const maxTry = 3;
+const tryNum =0;
 
 (async function toMarkdown() {
   try {
@@ -41,6 +43,11 @@ const {
     );
   } catch (error) {
     console.log('ERR:', error);
-    process.exitCode = 1;
+	if(tryNum < maxTry) {
+		tryNum++;
+		toMarkdown()
+	} else {
+        process.exitCode = 1;
+	}
   }
 })();
