@@ -48818,7 +48818,7 @@ let tryNum =0;
     const articleText = await HTMLtoMarkdown(htmlString);
     
     if (await fileExistCheck(input.markDownFilePath + articleFileName)) {
-        return reject("file has exist");
+        return Promise.reject("file has exist");
     } 
 
     await fs.writeFile(
