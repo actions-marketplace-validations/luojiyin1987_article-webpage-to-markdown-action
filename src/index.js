@@ -8,6 +8,7 @@ const {
 const {
   gatherInputs,
   inputExistCheck,
+  fileExistCheck,
   getRouteAddr,
   haveRouterAddrmd,
   HTMLtoMarkdown
@@ -33,6 +34,10 @@ let tryNum =0;
     const articleFileName = await haveRouterAddrmd(articleChildRouter);
     const htmlString = await (await nodeFetch(URL, options)).text();
     const articleText = await HTMLtoMarkdown(htmlString);
+    
+    if (await fileExistCheck(input.markDownFilePath + articleFileName)) {
+        return reject("file has exist");
+    } 
 
     await fs.writeFile(
       input.markDownFilePath + articleFileName,
