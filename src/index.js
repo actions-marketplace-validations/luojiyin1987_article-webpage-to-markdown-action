@@ -33,17 +33,17 @@ const {
     const htmlString = await (await nodeFetch(URL, options)).text();
     const articleText = await HTMLtoMarkdown(htmlString);
 
-    if (await fileExistCheck(input.markDownFilePath + articleFileName)) {
-      return Promise.reject("file has exist");
+    if (! await fileExistCheck(input.markDownFilePath + articleFileName)) {
+      await fs.writeFile(
+        input.markDownFilePath + articleFileName,
+        articleText,
+        (err) => {
+          if (err) return Promise.reject(err);
+        }
+      );
     }
 
-    await fs.writeFile(
-      input.markDownFilePath + articleFileName,
-      articleText,
-      (err) => {
-        if (err) return Promise.reject(err);
-      }
-    );
+    
   } catch (error) {
     console.log(error);
     process.exitCode = 1;
