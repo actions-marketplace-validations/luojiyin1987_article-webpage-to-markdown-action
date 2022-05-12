@@ -16,8 +16,6 @@ const {
 
 // cd ./news-translation
 // You can run `node script\toMarkdown\index.js URL<String>`(URL is the URL of the article).
-const maxTry = 3;
-let tryNum =0;
 
 (async function toMarkdown() {
   try {
@@ -34,10 +32,10 @@ let tryNum =0;
     const articleFileName = await haveRouterAddrmd(articleChildRouter);
     const htmlString = await (await nodeFetch(URL, options)).text();
     const articleText = await HTMLtoMarkdown(htmlString);
-    
+
     if (await fileExistCheck(input.markDownFilePath + articleFileName)) {
-        return Promise.reject("file has exist");
-    } 
+      return Promise.reject("file has exist");
+    }
 
     await fs.writeFile(
       input.markDownFilePath + articleFileName,
@@ -47,13 +45,8 @@ let tryNum =0;
       }
     );
   } catch (error) {
-    console.log('ERR:', error);
-    console.log('tryNum:', tryNum, 'maxTry:', maxTry);
-	if(tryNum < maxTry) {
-		tryNum++;
-		toMarkdown()
-	} else {
-        process.exitCode = 1;
-	}
+    console.log(error);
+    process.exitCode = 1;
   }
+
 })();
