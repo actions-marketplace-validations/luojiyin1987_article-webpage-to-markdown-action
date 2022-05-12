@@ -33,10 +33,10 @@ const {
     const htmlString = await (await nodeFetch(URL, options)).text();
     const articleText = await HTMLtoMarkdown(htmlString);
 
-    if (! await fileNoCheck(input.markDownFilePath + articleFileName)) {
-       console.log("file is exists");
-       
-    }
+    // if (! await fileNoCheck(input.markDownFilePath + articleFileName)) {
+    //    console.log("file is exists");
+
+    // }
 
     await fs.writeFile(
       input.markDownFilePath + articleFileName,
