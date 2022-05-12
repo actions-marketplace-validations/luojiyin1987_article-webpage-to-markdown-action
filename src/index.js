@@ -8,7 +8,7 @@ const {
 const {
   gatherInputs,
   inputExistCheck,
-  fileExistCheck,
+  fileNoCheck,
   getRouteAddr,
   haveRouterAddrmd,
   HTMLtoMarkdown
@@ -33,17 +33,20 @@ const {
     const htmlString = await (await nodeFetch(URL, options)).text();
     const articleText = await HTMLtoMarkdown(htmlString);
 
-    if (! await fileExistCheck(input.markDownFilePath + articleFileName)) {
-      await fs.writeFile(
-        input.markDownFilePath + articleFileName,
-        articleText,
-        (err) => {
-          if (err) return Promise.reject(err);
-        }
-      );
+    if (! await fileNoCheck(input.markDownFilePath + articleFileName)) {
+       console.log("file is exists");
+       
     }
 
-    
+    await fs.writeFile(
+      input.markDownFilePath + articleFileName,
+      articleText,
+      (err) => {
+        if (err) return Promise.reject(err);
+      }
+    );
+
+
   } catch (error) {
     console.log(error);
     process.exitCode = 1;
