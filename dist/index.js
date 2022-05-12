@@ -48790,7 +48790,7 @@ const {
 const {
   gatherInputs,
   inputExistCheck,
-  fileExistCheck,
+  fileNoCheck,
   getRouteAddr,
   haveRouterAddrmd,
   HTMLtoMarkdown
@@ -48815,9 +48815,10 @@ const {
     const htmlString = await (await nodeFetch(URL, options)).text();
     const articleText = await HTMLtoMarkdown(htmlString);
 
-    if (await fileExistCheck(input.markDownFilePath + articleFileName)) {
-      return Promise.reject("file has exist");
-    }
+    // if (! await fileNoCheck(input.markDownFilePath + articleFileName)) {
+    //    console.log("file is exists");
+
+    // }
 
     await fs.writeFile(
       input.markDownFilePath + articleFileName,
@@ -48826,6 +48827,8 @@ const {
         if (err) return Promise.reject(err);
       }
     );
+
+
   } catch (error) {
     console.log(error);
     process.exitCode = 1;
@@ -48920,10 +48923,10 @@ exports.inputExistCheck = (input) =>
     input.newsLink ? resolve(input.newsLink) : reject(Err_DontGetNewsLink);
   });
 
-//fileExitCheck in the path.
-exports.fileExistCheck = (path) =>
+//fileNoCheck in the path.
+exports.fileNoCheck = (path) =>
   new Promise((resolve, reject) => {
-    fs.existsSync(path)? resolve(true) : reject(false);
+    !fs.existsSync(path)? resolve(true) : reject(false);
   });
 
 // Check the input parameters, and get the routing address of the article.
