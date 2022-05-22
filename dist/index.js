@@ -51380,7 +51380,7 @@ exports.isNewFile = (path) => {
 exports.addComment = async (comment) =>{
   const githubToken = process.env.GITHUB_TOKEN;
 
-  if(githubToken) {
+  if(!githubToken) {
     const octokit = new github.Github(githubToken)
     const playload =  github.context.payload;
     const issue  = playload.issue;
