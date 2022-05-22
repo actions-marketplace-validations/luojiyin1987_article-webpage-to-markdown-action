@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const webhookPayload =  require('@actions/github/lib/interfaces/webhook-payload');
+
 const fs = require('fs');
 const cheerio = require('cheerio');
 const TurndownService = require('turndown');

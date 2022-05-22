@@ -51324,7 +51324,7 @@ exports.options = {
 
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
-const webhookPayload =  __nccwpck_require__(2306);
+
 const fs = __nccwpck_require__(5747);
 const cheerio = __nccwpck_require__(4612);
 const TurndownService = __nccwpck_require__(4800);
@@ -51476,14 +51476,6 @@ exports.HTMLtoMarkdown = (html) =>
 
     return resolve(articleHeader + '\n\n' + markdown);
   });
-
-
-/***/ }),
-
-/***/ 2306:
-/***/ ((module) => {
-
-module.exports = eval("require")("@actions/github/lib/interfaces/webhook-payload");
 
 
 /***/ }),
