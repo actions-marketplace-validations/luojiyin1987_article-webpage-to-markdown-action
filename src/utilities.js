@@ -1,4 +1,6 @@
 const core = require('@actions/core');
+const github = require('@actions/github');
+const webhookPayload =  require('@actions/github/lib/interfaces/webhook-payload');
 const fs = require('fs');
 const cheerio = require('cheerio');
 const TurndownService = require('turndown');
@@ -50,6 +52,30 @@ exports.isNewFile = (path) => {
   return !fs.existsSync(path)
 };
 
+//add comment to action
+exports.addComment = (comment) =>{
+  const githubToken = process.env.GITHUB_TOKEN;
+
+  if(githubToken) {
+    const octokit = new github.Github(githubToken)
+    const playload =  github.context.payload;
+    const issue  = playload.issue;
+    const repository = playload.repository;
+
+    await octokit.issues.createComment({
+      body:comment,
+      issue_number:issue.number,
+    })
+    core.debug(`issue: ${issue}`);
+    core.debug(`repository: ${repository}`);
+    core.debug(`comment: ${comment}`);
+  } else {
+    throw new Error('GITHUB_TOKEN is not defined');
+  }
+}
+
+// 
+
 // Check the input parameters, and get the routing address of the article.
 // - 原文网址：[原文标题](https://www.freecodecamp.org/news/xxxxxxx/
 exports.getRouteAddr = (URL) =>
@@ -75,6 +101,8 @@ exports.haveRouterAddrmd = (routerAddr) =>
             reject(Err_SameNameFile)
     )
   );
+
+
 
 // Convert HTML to markdown.
 exports.HTMLtoMarkdown = (html) =>

@@ -11,7 +11,8 @@ const {
   isNewFile,
   getRouteAddr,
   haveRouterAddrmd,
-  HTMLtoMarkdown
+  HTMLtoMarkdown,
+  addComment
 } = require('./utilities.js');
 
 // cd ./news-translation
@@ -48,6 +49,7 @@ const {
 
   } catch (error) {
     console.log(error);
+    addComment(error);
     process.exitCode = 1;
   }
 
