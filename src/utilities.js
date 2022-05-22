@@ -53,7 +53,7 @@ exports.isNewFile = (path) => {
 };
 
 //add comment to action
-exports.addComment = (comment) =>{
+exports.addComment = async (comment) =>{
   const githubToken = process.env.GITHUB_TOKEN;
 
   if(githubToken) {
@@ -70,7 +70,7 @@ exports.addComment = (comment) =>{
     core.debug(`repository: ${repository}`);
     core.debug(`comment: ${comment}`);
   } else {
-    throw new Error('GITHUB_TOKEN is not defined');
+    throw new Error('GitHub token was not found in environment');
   }
 }
 
