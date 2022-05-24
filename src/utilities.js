@@ -37,6 +37,7 @@ exports.gatherInputs = function gatherInputs() {
   return {
     newsLink: core.getInput("newsLink") || undefined,
     markDownFilePath: core.getInput("markDownFilePath") || "./",
+    githubToken: core.getInput("githubToken") || undefined,
   }
 }
 
@@ -54,9 +55,9 @@ exports.isNewFile = (path) => {
 
 //add comment to action
 exports.addComment = async (comment) =>{
-  const githubToken = process.env.GITHUB_TOKEN;
+  const githubToken = core.getInput("githubToken") || undefined;
 
-  if(!githubToken) {
+  if(githubToken) {
     const octokit =  github.getOctokit(githubToken)
     const playload =  github.context.payload;
     const issue  = playload.issue;
