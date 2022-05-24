@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { Octokit} = require("@octokit/rest");
 
 
 const fs = require('fs');
@@ -60,7 +61,7 @@ exports.addComment = async (comment) =>{
   const githubToken = core.getInput("githubToken") || undefined;
   console.log("githubToken",githubToken)
   if(githubToken) {
-    const octokit =  github.getOctokit(githubToken)
+    const octokit = new Octokit({auth:githubToken});
     const playload =  github.context.payload;
     const issue  = playload.issue;
     const repository = playload.repository;
