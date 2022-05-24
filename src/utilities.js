@@ -69,7 +69,7 @@ exports.addComment = async (comment) =>{
     await octokit.rest.issues.createComment({
       owner: repository.owner.login,
       repo:  repository.name,
-      body:comment,
+      body:comment.toString(),
       issue_number:issue.number,
    
     })
