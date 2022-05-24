@@ -51387,7 +51387,7 @@ exports.addComment = async (comment) =>{
     const issue  = playload.issue;
     const repository = playload.repository;
 
-    await octokit.issues.createComment({
+    await octokit.rest.issues.createComment({
       body:comment,
       issue_number:issue.number,
     })
