@@ -56,7 +56,7 @@ exports.isNewFile = (path) => {
 //add comment to action
 exports.addComment = async (comment) =>{
   const githubToken = core.getInput("githubToken") || undefined;
-
+  console.log("githubToken",githubToken)
   if(githubToken) {
     const octokit =  github.getOctokit(githubToken)
     const playload =  github.context.payload;
