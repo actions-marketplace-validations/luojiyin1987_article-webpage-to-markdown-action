@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+
 const fs = require('fs');
 const cheerio = require('cheerio');
 const TurndownService = require('turndown');
@@ -21,6 +22,7 @@ const {
   hostURL_EN,
   options
 } = require('./toMarkdownConstant.js');
+const { context } = require('../dist/index.js');
 
 const turndownService = new TurndownService({
   headingStyle: 'atx',
@@ -64,8 +66,10 @@ exports.addComment = async (comment) =>{
     const repository = playload.repository;
 
     await octokit.rest.issues.createComment({
+      ...context.repo,
       body:comment,
       issue_number:issue.number,
+   
     })
     core.debug(`issue: ${issue}`);
     core.debug(`repository: ${repository}`);
