@@ -66,7 +66,8 @@ exports.addComment = async (comment) =>{
     const repository = playload.repository;
 
     await octokit.rest.issues.createComment({
-      ...context.repo,
+      owner: repository.owner.login,
+      repo:  repository.name,
       body:comment,
       issue_number:issue.number,
    
