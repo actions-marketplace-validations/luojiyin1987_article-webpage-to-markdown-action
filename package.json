@@ -22,9 +22,9 @@
   "dependencies": {
     "@actions/core": "^1.2.7",
     "@actions/github": "^5.0.3",
+    "@octokit/rest": "^18.12.0",
     "cheerio": "^1.0.0-rc.5",
     "node-fetch": "^2.6.1",
-    "octokit": "^1.7.1",
     "turndown": "^7.0.0",
     "turndown-plugin-gfm": "^1.0.2"
   },
