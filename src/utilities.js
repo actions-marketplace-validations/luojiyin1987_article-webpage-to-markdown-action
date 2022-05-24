@@ -57,7 +57,7 @@ exports.addComment = async (comment) =>{
   const githubToken = process.env.GITHUB_TOKEN;
 
   if(!githubToken) {
-    const octokit = new github.Github(githubToken)
+    const octokit = new github.getOctokit(githubToken)
     const playload =  github.context.payload;
     const issue  = playload.issue;
     const repository = playload.repository;
